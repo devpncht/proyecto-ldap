@@ -1,0 +1,37 @@
+services:
+  # Contenedor 1: El Servidor LDAP
+  ldap-server:
+    image: osixia/openldap:1.5.0
+    container_name: linux_ldap_server
+    environment:
+      - LDAP_ORGANISATION=Universidad
+      - LDAP_DOMAIN=login-ldap.ra3.localhost
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_BASE_DN=dc=login-ldap,dc=ra3,dc=localhost
+    ports:
+      - "389:389"
+    networks:
+      - ldap-net
+    restart: always
+
+  # Contenedor 2: La Aplicación Web (Frontend + Backend Flask)
+  web-app:
+    build: .
+    container_name: flask_web_app
+    ports:
+      - "5050:5000"
+    environment:
+      - LDAP_HOST=ldap-server
+      - LDAP_BASE_DN=dc=login-ldap,dc=ra3,dc=localhost
+    depends_on:
+      - ldap-server
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    networks:
+      - ldap-net
+    restart: always
+
+networks:
+  ldap-net:
+    driver: bridge

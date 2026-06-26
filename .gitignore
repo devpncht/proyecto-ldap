@@ -1,0 +1,18 @@
+# __pycache__ y archivos compilados de Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Entornos virtuales locales (si crearas uno fuera de Docker)
+.venv/
+venv/
+env/
+ENV/
+
+# Archivos de configuración de editores
+.vscode/
+.idea/
+
+# Datos persistentes de Docker (para evitar bloquear bloqueos de archivos en Windows)
+.docker/

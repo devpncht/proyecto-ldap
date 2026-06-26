@@ -1,0 +1,9 @@
+dn: ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
+objectClass: organizationalUnit
+ou: usuarios
+
+dn: cn=devpncht,ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
+objectClass: inetOrgPerson
+cn: devpncht
+sn: User
+userPassword: mi_password_segura
