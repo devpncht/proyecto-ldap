@@ -26,7 +26,7 @@ services:
     depends_on:
       - ldap-server
     volumes:
-      - ./app:/app
+      - ./app:/app:z
     working_dir: /app
     networks:
       - ldap-net
