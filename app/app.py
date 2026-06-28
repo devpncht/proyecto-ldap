@@ -33,8 +33,9 @@ def login():
                 mensaje = "Usuario no encontrado (caso False)"
                 caso_true_false = False
         except Exception as e:
-            mensaje = "Usuario no encontrado (caso False)"
+            mensaje = f"Error de conexión: {str(e)}"
             caso_true_false = False
+	    print(f"Error LDAP: {e}")
 
     return render_template('login.html', mensaje=mensaje, caso_true_false=caso_true_false)
 
