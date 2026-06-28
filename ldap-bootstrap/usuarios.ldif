@@ -6,4 +6,4 @@ dn: cn=devpncht,ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
 objectClass: inetOrgPerson
 cn: devpncht
 sn: User
-userPassword: mi_password_segura
+userPassword: 12345678
