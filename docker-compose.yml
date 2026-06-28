@@ -1,15 +1,19 @@
-services:
+services:}
   # Contenedor 1: El Servidor LDAP
   ldap-server:
     image: osixia/openldap:1.5.0
     container_name: linux_ldap_server
     environment:
-      - LDAP_ORGANISATION=Universidad
+      - LDAP_ORGANISATION=Ulagos
       - LDAP_DOMAIN=login-ldap.ra3.localhost
       - LDAP_ADMIN_PASSWORD=adminpassword
       - LDAP_BASE_DN=dc=login-ldap,dc=ra3,dc=localhost
+    volumes:
+      - ./ldap-bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom:z 
     ports:
       - "389:389"
+    volumes:
+      - ./usuarios.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-usuarios.ldif
     networks:
       - ldap-net
     restart: always
@@ -17,7 +21,7 @@ services:
   # Contenedor 2: La Aplicación Web (Frontend + Backend Flask)
   web-app:
     build: .
-    container_name: flask_web_app
+    container_name: app-flask_login-ldap
     ports:
       - "5050:5000"
     environment:
