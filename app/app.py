@@ -35,7 +35,7 @@ def login():
         except Exception as e:
             mensaje = f"Error de conexión: {str(e)}"
             caso_true_false = False
-	    print(f"Error LDAP: {e}")
+            print(f"Error LDAP: {e}")  
 
     return render_template('login.html', mensaje=mensaje, caso_true_false=caso_true_false)
 
