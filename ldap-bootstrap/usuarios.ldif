@@ -1,9 +1,15 @@
 dn: ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
 objectClass: organizationalUnit
-ou: usuarios
+ou: usuarios 
 
 dn: cn=devpncht,ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
 objectClass: inetOrgPerson
 cn: devpncht
 sn: User
 userPassword: 12345678
+
+dn: cn=fveloso,ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
+objectClass: inetOrgPerson
+cn: fveloso
+sn: Veloso
+userPassword: Ulagos2026$
