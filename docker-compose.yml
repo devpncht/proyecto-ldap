@@ -1,5 +1,4 @@
-services:}
-  # Contenedor 1: El Servidor LDAP
+services:
   ldap-server:
     image: osixia/openldap:1.5.0
     container_name: linux_ldap_server
@@ -8,17 +7,16 @@ services:}
       - LDAP_DOMAIN=login-ldap.ra3.localhost
       - LDAP_ADMIN_PASSWORD=adminpassword
       - LDAP_BASE_DN=dc=login-ldap,dc=ra3,dc=localhost
+      - LDAP_TLS=false          # Desactivar TLS para simplificar
     volumes:
-      - ./ldap-bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom:z 
+      - ./ldap-bootstrap/usuarios.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/50-usuarios.ldif
     ports:
       - "389:389"
-    volumes:
-      - ./usuarios.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-usuarios.ldif
     networks:
       - ldap-net
+    command: --copy-service     # ← CLAVE: Copia archivos en lugar de moverlos
     restart: always
 
-  # Contenedor 2: La Aplicación Web (Frontend + Backend Flask)
   web-app:
     build: .
     container_name: app-flask_login-ldap
@@ -29,9 +27,6 @@ services:}
       - LDAP_BASE_DN=dc=login-ldap,dc=ra3,dc=localhost
     depends_on:
       - ldap-server
-    volumes:
-      - ./app:/app:z
-    working_dir: /app
     networks:
       - ldap-net
     restart: always
