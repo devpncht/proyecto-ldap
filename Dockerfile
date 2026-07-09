@@ -13,4 +13,8 @@ WORKDIR /app
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir flask==3.1.3 ldap3==2.9.1
 
+# Copiar la aplicación desde la carpeta /app del host
+COPY app/app.py .
+COPY app/templates/ ./templates/
+
 CMD ["python", "app.py"]
