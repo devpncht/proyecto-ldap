@@ -17,6 +17,20 @@ services:
     command: --copy-service     # ← CLAVE: Copia archivos en lugar de moverlos
     restart: always
 
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.9.0
+    container_name: phpldapadmin
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=ldap-server
+      - PHPLDAPADMIN_HTTPS=false
+    ports:
+      - "8080:80"
+    depends_on:
+      - ldap-server
+    networks:
+      - ldap-net
+    restart: always
+
   web-app:
     build: .
     container_name: app-flask_login-ldap
