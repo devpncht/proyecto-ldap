@@ -1,15 +1,30 @@
 dn: ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
 objectClass: organizationalUnit
-ou: usuarios 
+ou: usuarios
+
+dn: cn=programacionWeb_ra3,ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
+objectClass: posixGroup
+cn: programacionWeb_ra3
+gidNumber: 1000
 
 dn: cn=devpncht,ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
 objectClass: inetOrgPerson
+objectClass: posixAccount
 cn: devpncht
 sn: User
+uid: devpncht
+uidNumber: 1001
+gidNumber: 1000
+homeDirectory: /home/devpncht
 userPassword: 12345678
 
 dn: cn=fveloso,ou=usuarios,dc=login-ldap,dc=ra3,dc=localhost
 objectClass: inetOrgPerson
+objectClass: posixAccount
 cn: fveloso
 sn: Veloso
+uid: fveloso
+uidNumber: 1002
+gidNumber: 1000
+homeDirectory: /home/fveloso
 userPassword: Ulagos2026$
