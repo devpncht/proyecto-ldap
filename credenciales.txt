@@ -1,0 +1,3 @@
+PHPLDAPAdmin
+Login DN: cn=admin,dc=login-ldap,dc=ra3,dc=localhost
+Password: adminpassword
